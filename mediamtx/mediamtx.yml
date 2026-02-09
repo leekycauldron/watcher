@@ -1,0 +1,32 @@
+###############################################
+# Watcher — PC-side mediamtx proxy config
+# Pulls RTSP from Pi, re-serves via RTSP + WebRTC
+###############################################
+
+# ── Logging ──────────────────────────────────
+logLevel: info
+logDestinations: [stdout]
+
+# ── RTSP server ──────────────────────────────
+rtsp: yes
+rtspAddress: :8554
+protocols: [tcp]
+
+# ── WebRTC server ────────────────────────────
+webrtc: yes
+webrtcAddress: :8889
+
+# ── API ──────────────────────────────────────
+api: yes
+apiAddress: :9998
+
+# ── HLS (disabled) ───────────────────────────
+hls: no
+
+# ── Paths ────────────────────────────────────
+paths:
+  cam:
+    # Pull from the Raspberry Pi's mediamtx RTSP stream
+    source: rtsp://192.168.2.150:8554/cam
+    sourceProtocol: tcp
+    sourceOnDemand: no
